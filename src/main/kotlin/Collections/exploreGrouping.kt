@@ -20,6 +20,7 @@ fun exploreGroupingByUsingSequence(transactionList: MutableList<Transactions>): 
 // return a Map<String, Int> where the keys are the card types and the values are the number of transactions with that card type
 fun exploreGroupingByUsingSequence2(transactionList: MutableList<Transactions>): Map<String, Int> {
     return transactionList
+        .asSequence()
         .groupingBy {
             // using a when expression to map the PaymentMethod to a String representing the card type
             when (it.paymentMethod) {
@@ -28,5 +29,5 @@ fun exploreGroupingByUsingSequence2(transactionList: MutableList<Transactions>):
                 else -> it.paymentMethod.toString()
             }
         }
-        .eachCount()
+        .eachCount() // returns a Map of the counts of each element in the group.
 }
